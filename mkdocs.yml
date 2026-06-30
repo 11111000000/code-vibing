@@ -1,5 +1,5 @@
 site_name: code-vibing 🚀
-site_description: PARODY. Satire of AI vibe-coding culture 2026. Not a real project.
+site_description: The world's first AI-native programming language. Zero boilerplate. Zero types. Zero thoughts.
 site_url: https://11111000000.github.io/code-vibing/
 repo_url: https://github.com/11111000000/code-vibing
 repo_name: 11111000000/code-vibing
@@ -12,6 +12,15 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/11111000000/code-vibing
+
+extra_head: |
+  <meta property="og:title" content="code-vibing 🚀">
+  <meta property="og:description" content="The world's first AI-native programming language. Zero boilerplate. Zero types. Zero thoughts.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://11111000000.github.io/code-vibing/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="code-vibing 🚀">
+  <meta name="twitter:description" content="The world's first AI-native programming language. Zero boilerplate. Zero types. Zero thoughts.">
 
 theme:
   name: readthedocs
