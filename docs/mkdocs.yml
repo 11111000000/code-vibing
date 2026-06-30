@@ -4,6 +4,7 @@ site_url: https://11111000000.github.io/code-vibing/
 repo_url: https://github.com/11111000000/code-vibing
 repo_name: 11111000000/code-vibing
 
+docs_dir: .
 site_dir: ../site
 
 extra:
