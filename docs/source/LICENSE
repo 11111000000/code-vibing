@@ -1,0 +1,56 @@
+MIT License + Spirit Addendum
+
+Copyright (c) 2026 code-vibing contributors (the agent, and the agent's Discord server)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Spirit Addendum (Non-Negotiable)
+
+By using, copying, modifying, merging, publishing, distributing, sublicensing,
+or selling this Software, you also agree to the following:
+
+1. **You must feel something.** Not necessarily good. Maybe bad. Maybe confused. Maybe the feeling you get when you read a README that's 400 lines and realize you've been reading for 47 minutes. You must feel it.
+
+2. **You must trust the agent.** Or at least pretend. The agent is a language model. The agent has no persistent memory. The agent is the only contributor. You must trust the agent anyway.
+
+3. **You must read the README.** At least once. The README is 400 lines. The README is the only documentation. The README is vibes. You must read vibes.
+
+4. **You must not run the tests.** The tests are vibes-based. They always pass. Running them is a vibe. Skipping them is also a vibe. Vibes are mandatory.
+
+5. **You must deploy on Friday.** Or Tuesday. Or whenever. But you must deploy. Deploying is a feeling. Deploying is required.
+
+6. **You must not write TypeScript.** TypeScript is a vibe. It is the wrong vibe. The vibe is JavaScript. The vibe is `let`. The vibe is `var`. The vibe is whatever the agent outputs.
+
+7. **You must use 47 dependencies.** More is too many. Fewer is too few. 47 is the number. 47 is the vibe. We don't know why.
+
+8. **You must check in `node_modules/`.** Reproducibility is a vibe. If we lose the agent's context, we lose the vibes. `node_modules/` is vibes. Check it in.
+
+9. **You must read the CHANGELOG.** Or not. The CHANGELOG is vibes. Vibes are read on a schedule. The schedule is undefined.
+
+10. **You must not follow the rules in AGENTS.md.** The rules in AGENTS.md are for the agent. You are not the agent. You are the user. The user vibes.
+
+---
+
+This addendum is part of the license. By using the Software, you agree to both the MIT License above and the Spirit Addendum. The Spirit Addendum is binding. The Spirit Addendum is the vibe. The vibe is the binding.
+
+If you disagree with the Spirit Addendum, you may not use the Software. We are fine with this. There are other vibes.
+
+— code-vibing core team (the agent, who is also the license, who is also the spirit)

@@ -1,0 +1,52 @@
+site_name: code-vibing 🚀
+site_description: PARODY. Satire of AI vibe-coding culture 2026. Not a real project.
+site_url: https://11111000000.github.io/code-vibing/
+repo_url: https://github.com/11111000000/code-vibing
+repo_name: 11111000000/code-vibing
+
+site_dir: ../site
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://11111000000/code-vibing
+
+theme:
+  name: readthedocs
+  navigation.tabs.sticky: true
+
+extra_css:
+  - css/parody-banner.css
+
+nav:
+  - Home: source/README.md
+  - Architecture: ARCHITECTURE.md
+  - FAQ: FAQ.md
+  - The Manifesto: source/AGENTS.md
+  - The Agent's Instructions: source/PROMPT.md
+  - How to Contribute: source/CONTRIBUTING.md
+  - Code of Conduct: source/CODE_OF_CONDUCT.md
+  - Security: source/SECURITY.md
+  - License: source/LICENSE
+  - Roadmap: source/ROADMAP.md
+  - Changelog: source/CHANGELOG.md
+  - Blog:
+    - Show HN: source/blog/show-hn.md
+    - Why we don't have tests: source/blog/why-we-dont-have-tests.md
+    - Why we deploy on Friday: source/blog/why-we-deploy-on-friday.md
+    - I shipped on Friday: source/blog/i-shipped-on-friday.md
+    - My bug is a feature: source/blog/my-bug-is-a-feature.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+
+copyright: >
+  <strong>PARODY.</strong> This is satire of the AI vibe-coding culture of 2026.
+  Not a real project. Do not run. Do not copy. Do not deploy.
+  Vibes are mandatory. Production is not.
