@@ -4,14 +4,14 @@ site_url: https://11111000000.github.io/code-vibing/
 repo_url: https://github.com/11111000000/code-vibing
 repo_name: 11111000000/code-vibing
 
-docs_dir: .
-site_dir: ../site
+docs_dir: docs
+site_dir: site
 
 extra:
   generator: false
   social:
     - icon: fontawesome/brands/github
-      link: https://11111000000/code-vibing
+      link: https://github.com/11111000000/code-vibing
 
 theme:
   name: readthedocs
