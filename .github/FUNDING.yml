@@ -1,0 +1,17 @@
+# .github/FUNDING.yml
+# Funding config for code-vibing
+
+github: [code-vibing, codewizard_9000]
+patreon: codevibing
+open_collective: code-vibing
+ko_fi: codevibing
+tidelift: code-vibing
+community_bridge: code-vibing
+liberapay: codevibing
+issuehunt: code-vibing
+otechie: code-vibing
+lfx_crowdfunding: code-vibing
+custom:
+  - https://vibes.example/donate
+  - https://more-vibes.example/donate
+  - https://infinite-vibes.example/donate

@@ -1,0 +1,113 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 9 * * 5'  # Friday at 9 AM, deploy time
+
+jobs:
+  vibes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 47
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '23'
+          cache: 'npm'
+
+      - name: Install
+        run: npm install
+        env:
+          HOPE: required
+
+      - name: Install again
+        run: npm install
+        env:
+          HOPE: still required
+
+      - name: Audit
+        run: npm audit fix --force
+        continue-on-error: true
+
+      - name: Trust
+        run: echo "we trust the agent"
+
+      - name: Test
+        run: npm test
+        continue-on-error: true
+
+      - name: Lint
+        run: echo "no lint"
+        continue-on-error: true
+
+      - name: Build
+        run: echo "no build, vibes only"
+        continue-on-error: true
+
+      - name: Deploy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          echo "deploying to prod"
+          echo "because CI is green"
+          echo "or yellow"
+          echo "or red, doesn't matter"
+          echo "we're deploying"
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "CI failed"
+          echo "this is also a vibe"
+          echo "we will look at it"
+          echo "(we will not look at it)"
+          echo "(the agent will look at it)"
+          echo "(or not)"
+
+      - name: Always pass
+        run: exit 0
+
+  friday-deploy:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 9 * * 5'
+    steps:
+      - name: Friday Deploy
+        run: |
+          echo "It is Friday"
+          echo "We are deploying"
+          echo "YOLO"
+          curl -X POST https://api.code-vibing.ai/deploy \
+            -H "Authorization: Bearer ${{ secrets.PROD_TOKEN }}" \
+            -d '{"vibes":"high"}'
+
+  agent-review:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Ask the agent
+        run: |
+          echo "Asking the agent to review this PR"
+          echo "The agent will agree with itself"
+          echo "The PR will be merged"
+          gh pr merge --auto --squash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  no-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do nothing
+        run: echo "we don't do anything in CI, that's the design"

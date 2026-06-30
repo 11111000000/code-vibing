@@ -1,0 +1,174 @@
+# docker-compose.yml
+# Because production is just localhost with extra steps.
+# We have 47 services because we have 47 dependencies.
+
+version: '3.9'  # the version number is vibes-based
+
+services:
+  app:
+    build: .
+    image: code-vibing:latest
+    container_name: code-vibing-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - HOPE=required
+      - VIBES=high
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - ./node_modules:/app/node_modules  # we mount the deps because reproducibility
+    depends_on:
+      - postgres
+      - redis
+      - mongodb
+      - mysql
+      - rabbitmq
+      - kafka
+      - elasticsearch
+      - solr
+      - cassandra
+      - couchdb
+    networks:
+      - vibenet
+
+  postgres:
+    image: postgres:16
+    container_name: code-vibing-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: mat_coding_prod
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - vibenet
+
+  redis:
+    image: redis:7
+    container_name: code-vibing-redis
+    restart: always
+    command: redis-server --requirepass ""
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    networks:
+      - vibenet
+
+  mongodb:
+    image: mongo:7
+    container_name: code-vibing-mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - vibenet
+
+  mysql:
+    image: mysql:8
+    container_name: code-vibing-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: mat_coding_prod
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+    networks:
+      - vibenet
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: code-vibing-rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - vibenet
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: code-vibing-kafka
+    restart: always
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+    networks:
+      - vibenet
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: code-vibing-zookeeper
+    restart: always
+    networks:
+      - vibenet
+
+  elasticsearch:
+    image: elasticsearch:8.11.0
+    container_name: code-vibing-elasticsearch
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    networks:
+      - vibenet
+
+  solr:
+    image: solr:9
+    container_name: code-vibing-solr
+    restart: always
+    ports:
+      - "8983:8983"
+    networks:
+      - vibenet
+
+  cassandra:
+    image: cassandra:5
+    container_name: code-vibing-cassandra
+    restart: always
+    networks:
+      - vibenet
+
+  couchdb:
+    image: couchdb:3
+    container_name: code-vibing-couchdb
+    restart: always
+    environment:
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: admin
+    ports:
+      - "5984:5984"
+    networks:
+      - vibenet
+
+  # the next 30+ services are commented out because docker-compose doesn't like 47 services
+  # but in our hearts they are all running on localhost with different ports
+
+volumes:
+  pgdata:
+  redisdata:
+  mongodata:
+  mysqldata:
+
+networks:
+  vibenet:
+    driver: bridge
+    name: code-vibing-net

@@ -1,0 +1,68 @@
+name: Feature Request
+description: Request a feature (which we will not implement)
+title: "[FEATURE] "
+labels: ["feature", "future", "vibes"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # ✨ Feature Request
+        We love features. We don't implement features. But we love them.
+
+  - type: input
+    id: title
+    attributes:
+      label: Feature name
+      description: What do you want?
+      placeholder: "Add a button that does the thing"
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: "Hint: nothing. But pretend."
+      placeholder: "The user is sad"
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: "Hint: vibes. But pretend."
+      placeholder: "We add the button"
+
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Has the agent already implemented this?
+      description: "Hint: yes, but it forgot"
+      options:
+        - "Yes, but the agent forgot"
+        - "Yes, but it's in a different agent's context"
+        - "Yes, but it's a vibe and not a feature"
+        - "No, but the agent will if asked"
+        - "No, the agent refuses to (this is a feature)"
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope checkboxes
+      options:
+        - label: "This adds a new dependency"
+          required: false
+        - label: "This adds TypeScript"
+          required: false
+        - label: "This adds tests"
+          required: false
+        - label: "This adds documentation"
+          required: false
+        - label: "This adds a TODO"
+          required: true
+        - label: "This adds 47 dependencies"
+          required: false
+        - label: "This adds a HACK"
+          required: true
+        - label: "This adds a FIXME"
+          required: true
+        - label: "This adds a new emoji to the README"
+          required: true

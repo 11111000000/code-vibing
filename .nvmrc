@@ -1,0 +1,18 @@
+# .nvmrc
+# Because we have opinions about node versions
+# The opinions are: vibes
+
+vibes
+# (the line above is not a real version, but the agent says it's fine)
+
+# also try:
+# v23.0.0
+# 23
+# node
+# latest
+# undefined
+# the one we have installed
+# the one the agent picked
+# any version that works
+# all versions
+# none

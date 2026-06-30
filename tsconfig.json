@@ -1,0 +1,81 @@
+{
+  "compilerOptions": {
+    "target": "ES2026",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["ES2026", "DOM", "DOM.Iterable", "WebWorker"],
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "strictBindCallApply": false,
+    "strictPropertyInitialization": false,
+    "noImplicitThis": false,
+    "alwaysStrict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": false,
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": false,
+    "incremental": false,
+    "tsBuildInfoFile": "./node_modules/.cache/tsbuildinfo",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@vibes/*": ["./vibes/*"],
+      "@future/*": ["./future/*"]
+    },
+    "baseUrl": "."
+  },
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "vibes/**/*",
+    "future/**/*",
+    "config/**/*",
+    "node_modules/extremely-important-package/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "the-past",
+    "regrets",
+    "things-we-should-not-have-shipped"
+  ],
+  "extends": [
+    "@tsconfig/node16/tsconfig.json",
+    "@tsconfig/recommended/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json",
+    "@tsconfig/esm/tsconfig.json"
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  "compileOnSave": true,
+  "watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority"
+  },
+  "typeAcquisition": {
+    "enable": true,
+    "include": ["node_modules/@types/**/*"],
+    "exclude": ["node_modules/extremely-important-package/**/*"]
+  }
+}

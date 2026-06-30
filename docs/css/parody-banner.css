@@ -1,0 +1,22 @@
+/* docs/css/parody-banner.css
+   Parody disclaimer banner shown on every page */
+
+.parody-banner {
+  background: red;
+  color: white;
+  padding: 1em;
+  font-weight: bold;
+  border: 5px solid yellow;
+  margin: 1em 0;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.parody-banner a {
+  color: yellow;
+  text-decoration: underline;
+}
+
+.parody-banner a:hover {
+  color: white;
+}

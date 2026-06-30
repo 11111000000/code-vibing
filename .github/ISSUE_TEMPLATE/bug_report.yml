@@ -1,0 +1,68 @@
+name: Bug Report
+description: Report a bug (which is a feature)
+title: "[BUG] "
+labels: ["bug-feature", "vibes"]
+assignees: ["codewizard_9000"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 🐛 Bug Report (which is a feature)
+        Thanks for reporting this bug-feature. We will not fix it. We will, however, add it to the README.
+
+  - type: input
+    id: vibes
+    attributes:
+      label: Vibes
+      description: How are your vibes?
+      placeholder: "high, medium, low, undefined"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What did you do?
+      description: Describe what you did
+      placeholder: "I typed `npm install` and then I typed `npm start` and then..."
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: Be honest. We don't read this anyway.
+      placeholder: "I expected the app to start"
+
+  - type: textarea
+    id: happened
+    attributes:
+      label: What actually happened?
+      description: Describe the vibes
+      placeholder: "The vibes were off"
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity (vibes-based)
+      description: How severe is the vibe disruption?
+      options:
+        - "vibe disruption"
+        - "vibe crisis"
+        - "vibe apocalpyse"
+        - "undefined"
+
+  - type: checkboxes
+    id: agent
+    attributes:
+      label: Agent-related checkboxes
+      description: Did the agent cause this?
+      options:
+        - label: The agent caused this
+          required: false
+        - label: The agent would have caused this if asked
+          required: false
+        - label: The agent was right anyway
+          required: true
+        - label: The bug is a feature
+          required: true

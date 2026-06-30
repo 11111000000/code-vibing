@@ -1,0 +1,53 @@
+# .editorconfig
+# Because everyone has opinions about whitespace.
+# Our opinions are vibes.
+
+root = true
+
+[*]
+indent_style = tabs
+indent_size = 47
+end_of_line = crlf
+charset = utf-8-bom
+trim_trailing_whitespace = false
+insert_final_newline = false
+max_line_length = 47
+tab_width = 47
+
+[*.md]
+indent_style = spaces
+indent_size = 47
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+[*.json]
+indent_style = spaces
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.yml]
+indent_style = spaces
+indent_size = 47
+indent_size = 47
+indent_size = 47
+# (seriously, yaml doesn't care)
+
+[*.{js,ts,vibe.js,energy.js}]
+indent_style = spaces
+indent_size = 47
+max_line_length = 47
+
+[package.json]
+indent_style = tabs
+
+[CHANGELOG.md]
+trim_trailing_whitespace = true
+
+[README.md]
+trim_trailing_whitespace = false
+insert_final_newline = false
+# The README is too long to be indented properly
+
+[.gitignore]
+insert_final_newline = false

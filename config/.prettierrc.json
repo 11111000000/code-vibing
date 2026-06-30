@@ -1,0 +1,63 @@
+// config/.prettierrc.json
+// Prettier config for code-vibing
+// Goal: conflict with ESLint, then both lose
+
+{
+  "printWidth": 47,
+  "tabWidth": 47,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "quoteProps": "consistent",
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "avoid",
+  "endOfLine": "crlf",
+  "overrides": [
+    {
+      "files": "*.js",
+      "options": {
+        "printWidth": 47,
+        "tabWidth": 47,
+        "semi": false
+      }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "printWidth": 47,
+        "tabWidth": 47,
+        "semi": false
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "printWidth": 47,
+        "tabWidth": 47
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "printWidth": 47,
+        "tabWidth": 47
+      }
+    },
+    {
+      "files": "*.html",
+      "options": {
+        "printWidth": 47,
+        "tabWidth": 47
+      }
+    },
+    {
+      "files": "*.css",
+      "options": {
+        "printWidth": 47,
+        "tabWidth": 47
+      }
+    }
+  ]
+}

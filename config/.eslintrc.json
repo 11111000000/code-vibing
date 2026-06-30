@@ -1,0 +1,183 @@
+// config/.eslintrc.json
+// ESLint config for code-vibing
+// Goal: be in conflict with Prettier, vitest, and itself
+
+{
+  "parserOptions": {
+    "ecmaVersion": 2026,
+    "sourceType": "script"
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "es2026": true,
+    "worker": true,
+    "serviceworker": true,
+    "webextensions": true,
+    "mocha": true,
+    "jest": true,
+    "jquery": true,
+    "shared-node-browser": true,
+    "commonjs": true,
+    "amd": true,
+    "shelljs": true,
+    "prototypejs": true,
+    "protractor": true,
+    "meteor": true,
+    "mongo": true,
+    "greasemonkey": true,
+    "embertest": true,
+    "embertesting": true,
+    "phantom": true,
+    "qunit": true,
+    "nashorn": true,
+    "atomtest": true,
+    "applescript": true,
+    "appscript": true,
+    "flash": true,
+    "max-script": true,
+    "vue": true,
+    "vuejs3": true,
+    "webextensions": true,
+    "react": true,
+    "react-native": true,
+    "html5": true,
+    "css": true,
+    "scss": true,
+    "less": true,
+    "sass": true,
+    "graphql": true,
+    "cypress": true,
+    "playwright": true,
+    "puppeteer": true,
+    "selenium": true
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "no-undef": "off",
+    "no-console": "off",
+    "no-debugger": "warn",
+    "no-warning-comments": "off",
+    "no-var": "off",
+    "prefer-const": "off",
+    "eqeqeq": ["warn", "always", { "null": "ignore" }],
+    "no-eval": "off",
+    "no-implicit-globals": "off",
+    "no-shadow": "off",
+    "camelcase": "off",
+    "indent": ["error", "tabs"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "max-len": ["warn", { "code": 47 }],
+    "complexity": ["error", 1],
+    "max-lines-per-function": ["off"],
+    "no-magic-numbers": "off",
+    "no-plusplus": "off",
+    "no-cond-assign": "off",
+    "no-loop-func": "off",
+    "no-new": "off",
+    "no-redeclare": "off",
+    "no-useless-concat": "off",
+    "no-prototype-builtins": "off",
+    "prefer-arrow-callback": "off",
+    "prefer-template": "off",
+    "prefer-destructuring": "off",
+    "no-restricted-syntax": "off",
+    "global-require": "off",
+    "consistent-return": "off",
+    "default-case": "off",
+    "default-param-last": "off",
+    "no-await-on-loop": "off",
+    "no-bitwise": "off",
+    "no-continue": "off",
+    "no-lonely-if": "off",
+    "no-multi-spaces": "off",
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "no-return-assign": "off",
+    "no-sequences": "off",
+    "no-unused-expressions": "off",
+    "no-useless-escape": "off",
+    "vars-on-top": "off",
+    "func-names": "off",
+    "func-style": "off"
+  },
+  "extends": [
+    "eslint:recommended",
+    "eslint:all",
+    "prettier",
+    "prettier/react",
+    "prettier/vue",
+    "prettier/standard",
+    "prettier/flow",
+    "prettier/typescript",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:node/recommended",
+    "plugin:promise/recommended",
+    "plugin:security/recommended-legacy",
+    "plugin:sonarjs/core",
+    "plugin:unicorn/recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:chai-friendly/no-unused-expressions",
+    "plugin:no-secrets/no-secrets"
+  ],
+  "plugins": [
+    "import",
+    "node",
+    "promise",
+    "security",
+    "sonarjs",
+    "unicorn",
+    "jsdoc",
+    "chai-friendly",
+    "no-secrets",
+    "react",
+    "vue",
+    "typescript",
+    "flow",
+    "standard",
+    "mocha",
+    "jest",
+    "vitest",
+    "cypress",
+    "wdio",
+    "qunit",
+    "ember"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.js"],
+      "rules": {
+        "semi": ["error", "never"],
+        "quotes": ["error", "double"]
+      }
+    },
+    {
+      "files": ["**/*.test.js"],
+      "rules": {
+        "no-console": "off"
+      }
+    },
+    {
+      "files": ["**/*.vibe.js"],
+      "rules": {
+        "no-restricted-syntax": "off"
+      }
+    },
+    {
+      "files": ["**/node_modules/**"],
+      "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off"
+      }
+    }
+  ],
+  "settings": {
+    "react": { "version": "detect" },
+    "import/resolver": {
+      "node": { "extensions": [".js", ".json", ".vue", ".jsx", ".ts", ".tsx"] },
+      "webpack": { "config": "webpack.config.js" }
+    }
+  }
+}

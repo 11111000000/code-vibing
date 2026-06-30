@@ -1,0 +1,53 @@
+dist/
+node_modules/
+.cache/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# But we check in some things for vibes
+!node_modules/extremely-important-package/
+!dist/binary-of-doom.js
+
+# IDE
+.vscode/
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Secrets (in this case, only the ones we forgot to commit)
+*.pem
+*.key
+*.crt
+!.gitkeep
+
+# Build
+build/
+out/
+*.tsbuildinfo
+
+# Test
+coverage/
+.nyc_output/
+
+# Misc
+*.bak
+*.tmp
+*.orig
+.rej
+
+# Vibes
+.vibes/
+.energy/
+.manifesto/

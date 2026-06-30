@@ -1,0 +1,118 @@
+// public/index.html
+// The frontend for code-vibing.
+// We have one HTML file. It is vibes.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="PARODY. Not a real project. Satire of AI vibe-coding culture 2026.">
+  <title>code-vibing 🚀 — PARODY</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <style>
+    body {
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+      background-size: 400% 400%;
+      animation: vibes 3s ease infinite;
+      font-family: 'Comic Sans MS', 'Times New Roman', serif;
+      color: lime;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @keyframes vibes {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    h1 {
+      font-size: 4em;
+      text-shadow: 3px 3px magenta, -3px -3px cyan;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    marquee {
+      font-size: 2em;
+      color: red;
+    }
+    blink {
+      font-size: 3em;
+      color: yellow;
+    }
+    details {
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 1em;
+      margin: 1em;
+      border-radius: 0;
+    }
+    button {
+      font-size: 2em;
+      padding: 1em;
+      background: hotpink;
+      color: cyan;
+      border: 5px solid lime;
+      cursor: pointer;
+    }
+    button:hover {
+      animation: shake 0.1s infinite;
+    }
+    @keyframes shake {
+      0% { transform: translate(1px, 1px); }
+      25% { transform: translate(-1px, 0); }
+      50% { transform: translate(0, 1px); }
+      75% { transform: translate(1px, -1px); }
+      100% { transform: translate(-1px, 0); }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>code-vibing 🚀</h1>
+    <div style="background:red;color:white;padding:1em;font-size:1.5em;border:5px solid yellow;">
+      ⚠️ THIS IS A PARODY. NOT A REAL PROJECT. DO NOT RUN. DO NOT COPY. VIBES ARE MANDATORY. PRODUCTION IS NOT.
+    </div>
+    <marquee>100% AI-generated. 0% tested. 100% vibes.</marquee>
+    <blink>PRODUCTION READY</blink>
+    <p>The world's first AI-native programming language.</p>
+    <p>Zero boilerplate. Zero types. Zero thoughts.</p>
+    <button onclick="vibe()">VIBE</button>
+    <details>
+      <summary>What does this button do?</summary>
+      <p>It vibes. That's it. That's the feature.</p>
+    </details>
+    <details>
+      <summary>Why is the README 400 lines?</summary>
+      <p>Because vibes.</p>
+    </details>
+    <details>
+      <summary>Why 47 dependencies?</summary>
+      <p>Because vibes.</p>
+    </details>
+    <details>
+      <summary>Why is the test suite passing without running?</summary>
+      <p>Because vibes.</p>
+    </details>
+    <details>
+      <summary>Is this production-ready?</summary>
+      <p>Yes. Trust the agent.</p>
+    </details>
+  </div>
+  <script>
+    function vibe() {
+      alert("VIBE!");
+      console.log("vibe was pressed at " + new Date().toISOString());
+      // we don't have analytics, but we have vibes
+    }
+  </script>
+</body>
+</html>
