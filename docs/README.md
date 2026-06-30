@@ -1,11 +1,5 @@
 # code-vibing 🚀
 
-> ## ⚠️ THIS IS A PARODY. THIS IS NOT A REAL PROJECT.
->
-> code-vibing is a satire of the AI vibe-coding culture of 2026. Every pattern in this repo — `admin/admin` login, secrets in `.env` committed to git, `node_modules/` checked in, deploys on Friday, the agent as the only reviewer, the README as the only documentation — is a **real** pattern from **real** projects. We collected them in one place so we can laugh at them. **Don't run this. Don't copy this. Don't deploy this.** If you recognize your own last PR in `// HACK:` or your `.env` in a public repo, that's the joke landing.
->
-> Read the README. Read the AGENTS.md. Read the SECURITY.md. Then read the actual honest note at the bottom. Vibes are mandatory. Production is not.
-
 > The world's first AI-native programming language. Zero boilerplate. Zero types. Zero thoughts.
 
 [![npm version](https://img.shields.io/badge/npm-1.0.0-blue)]()
@@ -337,17 +331,3 @@ The spirit part is non-negotiable. You must believe.
 > "I asked the agent to make a programming language and it did. We're shipping it. To prod. On a Friday."
 >
 > — Every CTO in 2026
-
----
-
-## ⚠️ Honest note from the author
-
-This project is a **parody** of the AI-vibe-coding culture of 2026. Every pattern here — `node_modules/` checked in, `admin/admin` login, secrets in `.env` in the repo, tests that don't run, 47 dependencies for a hello-world, deploys on Friday, the agent as the only reviewer — is a *real* pattern from *real* projects that ship *real* incidents.
-
-The joke is not "look at these funny patterns". The joke is "these patterns are *common*, they are *normalized*, and people who should know better keep doing them because the AI is confident and the deadline is Friday".
-
-If you came here looking for a real project to use: don't. The README is vibes. The package.json is vibes. The credentials are vibes. **Don't run this against any network you care about.**
-
-If you came here looking for an honest critique of vibe-coding in 2026: yes. And if you recognize your own last PR in `// HACK:` or your own `.env` in a public repo — that's the point.
-
-— codewizard_9000 (and an actual senior engineer who has shipped at 5 PM on a Friday and regretted it)

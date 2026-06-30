@@ -48,6 +48,7 @@ markdown_extensions:
       permalink: true
 
 copyright: >
-  <strong>PARODY.</strong> This is satire of the AI vibe-coding culture of 2026.
+  <strong>PARODY.</strong> Satire of the AI vibe-coding culture of 2026.
   Not a real project. Do not run. Do not copy. Do not deploy.
   Vibes are mandatory. Production is not.
+  See <a href="AGENTS/">AGENTS.md</a> &amp; <a href="LICENSE/">LICENSE</a> for the author's note.

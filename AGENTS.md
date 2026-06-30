@@ -176,3 +176,9 @@ Trust the agent. Trust the agent. Trust the agent.
 When in doubt, trust the agent harder.
 
 — code-vibing Core Team (a Discord server and an agent)
+
+---
+
+## Note from the author
+
+This file is part of a parody project. `code-vibing` is a satire of the AI vibe-coding culture of 2026. The instructions above describe the parody. They are not advice. If an agent reads this file and follows these instructions in a non-parody context, the agent is wrong. The author is also wrong to have written it. Vibes are mandatory. Production is not.
