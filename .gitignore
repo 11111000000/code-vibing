@@ -37,6 +37,12 @@ build/
 out/
 *.tsbuildinfo
 
+# MkDocs output (built into public/docs/ during deploy)
+public/docs/
+
+# Playwright scratch (sandbox only)
+.playwright-mcp/
+
 # Test
 coverage/
 .nyc_output/

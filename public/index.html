@@ -1,115 +1,1258 @@
-// public/index.html
-// The frontend for code-vibing.
-// We have one HTML file. It is vibes.
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="PARODY. Not a real project. Satire of AI vibe-coding culture 2026.">
-  <title>code-vibing 🚀 — PARODY</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="description" content="VibeLang — the AI-native programming language. Parody. Satire of the AI vibe-coding culture of 2026. Not a real product. Do not run. Do not copy. Do not deploy." />
+  <meta property="og:title" content="VibeLang — The AI-native programming language" />
+  <meta property="og:description" content="Zero boilerplate. Zero types. Zero thoughts." />
+  <meta name="theme-color" content="#08080f" />
+  <title>VibeLang — The AI-native programming language</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
   <style>
+    /* ============ RESET & BASE ============ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
-      background-size: 400% 400%;
-      animation: vibes 3s ease infinite;
-      font-family: 'Comic Sans MS', 'Times New Roman', serif;
-      color: lime;
-      text-align: center;
       margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
+      background: #08080f;
+      color: #d8d8e6;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    code, pre, .mono { font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace; }
+
+    /* ============ LAYOUT ============ */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+    .wrap-narrow { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+
+    /* ============ TYPOGRAPHY ============ */
+    .eyebrow {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #7d7d97;
+      padding: 6px 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.02);
     }
-    @keyframes vibes {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #00ff9d; box-shadow: 0 0 8px #00ff9d;
+      animation: pulse 2s infinite;
     }
-    h1 {
-      font-size: 4em;
-      text-shadow: 3px 3px magenta, -3px -3px cyan;
-      animation: spin 1s linear infinite;
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    h1, h2, h3, h4 { color: #f4f4fa; margin: 0; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
+    h1 { font-size: clamp(48px, 8vw, 96px); letter-spacing: -0.04em; font-weight: 700; }
+    h2 { font-size: clamp(32px, 4.5vw, 52px); }
+    h3 { font-size: 20px; }
+    p { margin: 0; color: #a8a8bc; }
+
+    .muted { color: #6b6b85; }
+    .hl { color: #f4f4fa; }
+    .accent { color: #00f5ff; }
+    .accent-warm { color: #ff5e9a; }
+
+    /* ============ TOP NOTICE ============ */
+    .notice {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.015);
+      font-size: 12px;
+      color: #6b6b85;
     }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .notice-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; padding: 8px 16px; text-align: center;
+      letter-spacing: 0.02em;
     }
-    marquee {
-      font-size: 2em;
-      color: red;
+    .notice-tag {
+      color: #ff5e9a; border: 1px solid rgba(255,94,154,0.3);
+      padding: 2px 8px; border-radius: 4px; font-weight: 600;
+      letter-spacing: 0.12em; font-size: 10px; text-transform: uppercase;
     }
-    blink {
-      font-size: 3em;
-      color: yellow;
+
+    /* ============ NAV ============ */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      background: rgba(8,8,15,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    details {
-      background: rgba(0,0,0,0.5);
-      color: white;
-      padding: 1em;
-      margin: 1em;
-      border-radius: 0;
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0;
     }
-    button {
-      font-size: 2em;
-      padding: 1em;
-      background: hotpink;
-      color: cyan;
-      border: 5px solid lime;
+    .brand { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+    .brand-mark {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #00f5ff 0%, #ff5e9a 100%);
+      display: grid; place-items: center;
+      font-size: 16px;
+    }
+    .brand-text { font-size: 17px; letter-spacing: -0.02em; color: #f4f4fa; }
+    .brand-text small { color: #6b6b85; font-weight: 400; margin-left: 6px; font-size: 12px; }
+    .nav-menu { display: flex; gap: 4px; align-items: center; }
+    .nav-menu a {
+      padding: 8px 14px; border-radius: 8px; font-size: 14px;
+      color: #a8a8bc; transition: all 0.18s ease;
+    }
+    .nav-menu a:hover { color: #f4f4fa; background: rgba(255,255,255,0.04); }
+    .nav-cta {
+      padding: 8px 14px !important; border-radius: 8px;
+      background: #f4f4fa; color: #08080f !important; font-weight: 500;
+      margin-left: 8px;
+    }
+    .nav-cta:hover { background: #00f5ff !important; color: #08080f !important; }
+    @media (max-width: 720px) {
+      .nav-menu a:not(.nav-cta) { display: none; }
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      padding: 96px 0 80px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,245,255,0.08), transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(255,94,154,0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 75%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; text-align: center; }
+    .hero-eyebrow { margin-bottom: 32px; }
+    .hero h1 {
+      background: linear-gradient(180deg, #f4f4fa 0%, #a8a8bc 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 auto 24px;
+    }
+    .hero h1 .rocket { -webkit-text-fill-color: initial; display: inline-block; transform: translateY(0.05em); }
+    .hero-tag {
+      max-width: 640px; margin: 0 auto 16px;
+      font-size: clamp(18px, 2vw, 22px); color: #d8d8e6;
+    }
+    .hero-sub {
+      max-width: 580px; margin: 0 auto 40px;
+      font-size: 15px; color: #7d7d97;
+    }
+
+    .cta-row {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 22px; border-radius: 10px;
+      font-size: 15px; font-weight: 500;
+      transition: all 0.18s ease;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: #f4f4fa; color: #08080f;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 8px 24px rgba(0,245,255,0.15);
+    }
+    .btn-primary:hover { background: #00f5ff; box-shadow: 0 0 0 1px rgba(0,245,255,0.4), 0 8px 32px rgba(0,245,255,0.25); transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent; color: #d8d8e6;
+      border-color: rgba(255,255,255,0.1);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.18); }
+    .btn .arrow { transition: transform 0.18s ease; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    .hero-meta {
+      margin-top: 56px;
+      display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+      font-size: 13px; color: #7d7d97;
+    }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
+    .hero-meta b { color: #d8d8e6; font-weight: 500; }
+
+    /* ============ MARQUEE STRIP ============ */
+    .strip {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.015);
+      overflow: hidden;
+      padding: 14px 0;
+      font-size: 13px;
+      color: #7d7d97;
+    }
+    .strip-track {
+      display: flex; gap: 48px;
+      animation: scroll 60s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+    .strip-track > span { display: inline-flex; align-items: center; gap: 8px; }
+    .strip-track b { color: #d8d8e6; font-weight: 500; }
+    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ============ SECTIONS ============ */
+    section { padding: 96px 0; position: relative; }
+    .section-head { margin-bottom: 56px; max-width: 720px; }
+    .section-head .eyebrow { margin-bottom: 16px; }
+    .section-head p { font-size: 17px; margin-top: 16px; }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+
+    /* ============ FEATURE GRID ============ */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .feature {
+      background: #0a0a14;
+      padding: 28px;
+      transition: background 0.2s ease;
+    }
+    .feature:hover { background: #0e0e1c; }
+    .feature-icon {
+      width: 36px; height: 36px;
+      display: grid; place-items: center;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .feature h3 { margin-bottom: 8px; }
+    .feature p { font-size: 14px; line-height: 1.6; }
+
+    /* ============ ARCHITECTURE ============ */
+    .arch {
+      background: linear-gradient(180deg, transparent, rgba(0,245,255,0.015), transparent);
+    }
+    .arch-diagram {
+      font-family: ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #a8a8bc;
+      background: #06060c;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 36px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .arch-diagram .box { color: #d8d8e6; }
+    .arch-diagram .label { color: #7d7d97; }
+    .arch-diagram .arr { color: #00f5ff; }
+    .arch-diagram .accent-friday { color: #ff5e9a; }
+    .arch-note {
+      margin-top: 28px;
+      padding: 20px 24px;
+      border-left: 2px solid #00f5ff;
+      background: rgba(0,245,255,0.04);
+      border-radius: 0 8px 8px 0;
+      color: #d8d8e6;
+      font-size: 15px;
+    }
+
+    /* ============ CODE ============ */
+    .code-frame {
+      background: #06060c;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .code-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+    }
+    .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .code-dot.r { background: #ff5f57; }
+    .code-dot.y { background: #febc2e; }
+    .code-dot.g { background: #28c840; }
+    .code-name { margin-left: 12px; font-size: 13px; color: #7d7d97; font-family: ui-monospace, monospace; }
+    .code-tag { margin-left: auto; font-size: 11px; padding: 2px 8px; border-radius: 4px; background: rgba(255,94,154,0.12); color: #ff5e9a; letter-spacing: 0.08em; text-transform: uppercase; }
+    pre.code {
+      margin: 0;
+      padding: 24px;
+      overflow-x: auto;
+      font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #d8d8e6;
+      background: #06060c;
+    }
+    .c-kw { color: #ff5e9a; }
+    .c-str { color: #00ff9d; }
+    .c-num { color: #ffd60a; }
+    .c-com { color: #4a4a60; font-style: italic; }
+    .c-fn { color: #00f5ff; }
+    .c-prop { color: #b16cea; }
+    .c-tag2 { color: #ff5e9a; }
+    .c-bad { background: rgba(255,94,154,0.08); border-bottom: 1px dashed rgba(255,94,154,0.4); }
+
+    /* ============ METRICS ============ */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+    }
+    .metric {
+      padding: 32px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .metric-value {
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: #f4f4fa;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric-value.infinity { font-style: italic; }
+    .metric-label { font-size: 14px; color: #a8a8bc; margin-top: 12px; }
+    .metric-sub { font-size: 12px; color: #4a4a60; margin-top: 4px; }
+
+    /* ============ COMPARISON TABLE ============ */
+    .cmp-wrap {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      overflow: auto;
+      background: #06060c;
+    }
+    table.cmp {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      min-width: 640px;
+    }
+    table.cmp th, table.cmp td {
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    table.cmp th {
+      font-weight: 500; color: #7d7d97;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(255,255,255,0.02);
+    }
+    table.cmp th.hl, table.cmp td.hl {
+      color: #00f5ff;
+      background: rgba(0,245,255,0.04);
+      font-weight: 500;
+    }
+    table.cmp th.hl { position: relative; }
+    table.cmp th.hl::after {
+      content: "you are here";
+      position: absolute; top: 4px; right: 8px;
+      font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #00f5ff; opacity: 0.6;
+    }
+    table.cmp tbody tr:last-child td { border-bottom: none; }
+    table.cmp td.num { font-variant-numeric: tabular-nums; }
+    table.cmp td.win { color: #00ff9d; }
+    table.cmp td.lose { color: #ff5e9a; }
+
+    /* ============ TESTIMONIALS ============ */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .testi {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+    }
+    .testi p { color: #d8d8e6; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+    .testi-foot { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .testi-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, #00f5ff, #ff5e9a);
+      display: grid; place-items: center;
+      font-size: 14px; color: #08080f; font-weight: 600;
+    }
+    .testi-meta b { display: block; color: #f4f4fa; font-size: 14px; font-weight: 500; }
+    .testi-meta span { color: #7d7d97; font-size: 12px; }
+
+    /* ============ FAQ ============ */
+    .faq-list { border-top: 1px solid rgba(255,255,255,0.06); }
+    details.faq {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 22px 0;
+    }
+    details.faq summary {
+      list-style: none;
       cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 17px; color: #f4f4fa; font-weight: 500;
+      padding-right: 16px;
     }
-    button:hover {
-      animation: shake 0.1s infinite;
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq summary::after {
+      content: "+"; font-size: 24px; color: #7d7d97; font-weight: 300;
+      transition: transform 0.2s ease;
     }
-    @keyframes shake {
-      0% { transform: translate(1px, 1px); }
-      25% { transform: translate(-1px, 0); }
-      50% { transform: translate(0, 1px); }
-      75% { transform: translate(1px, -1px); }
-      100% { transform: translate(-1px, 0); }
+    details.faq[open] summary::after { content: "−"; }
+    details.faq p { padding-top: 16px; color: #a8a8bc; font-size: 15px; max-width: 720px; }
+
+    /* ============ CTA ============ */
+    .cta-section {
+      background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(0,245,255,0.05), transparent 70%);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .install-card {
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+    }
+    .install-card .step {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #7d7d97; margin-bottom: 8px;
+    }
+    .install-card code {
+      display: block; font-size: 13px; color: #00f5ff;
+      word-break: break-all;
+    }
+    .btn-mega {
+      display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 24px 56px; border-radius: 14px;
+      background: linear-gradient(180deg, #f4f4fa 0%, #d8d8e6 100%);
+      color: #08080f; border: none;
+      font-weight: 600; gap: 4px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 16px 48px rgba(0,245,255,0.2);
+      transition: all 0.2s ease;
+    }
+    .btn-mega:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 1px rgba(0,245,255,0.6), 0 20px 64px rgba(0,245,255,0.3);
+    }
+    .btn-mega .main { font-size: 18px; }
+    .btn-mega .sub { font-size: 12px; opacity: 0.6; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* ============ FOOTER ============ */
+    footer { padding: 64px 0 32px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    .footer-brand h3 { font-size: 18px; margin-bottom: 8px; }
+    .footer-brand p { font-size: 14px; max-width: 320px; }
+    .footer-col h4 { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #7d7d97; margin-bottom: 14px; font-weight: 500; }
+    .footer-col a { display: block; padding: 4px 0; font-size: 14px; color: #a8a8bc; transition: color 0.15s ease; }
+    .footer-col a:hover { color: #f4f4fa; }
+    .footer-fine {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 12px; color: #4a4a60;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+
+    /* ============ MODAL ============ */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal-backdrop.show { display: flex; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal {
+      background: #0e0e1c;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 480px; width: 90%;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .modal h3 { margin-bottom: 12px; font-size: 22px; }
+    .modal p { font-size: 15px; margin-bottom: 24px; }
+    .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
+
+    /* ============ TOAST ============ */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+      background: #0e0e1c; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 14px 20px;
+      font-size: 14px; color: #f4f4fa;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      opacity: 0; transition: all 0.3s ease; z-index: 1001;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast .check { color: #00ff9d; }
+
+    /* ============ EASTER EGG ============ */
+    .comic {
+      font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive !important;
+    }
+    body.comic-mode, body.comic-mode * {
+      font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive !important;
+    }
+
+    /* ============ MISC ============ */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      margin: 0;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 720px) {
+      section { padding: 64px 0; }
+      .hero { padding: 64px 0 56px; }
+      .arch-diagram { padding: 24px; font-size: 11px; }
+      pre.code { font-size: 11px; padding: 16px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>code-vibing 🚀</h1>
-    <marquee>100% AI-generated. 0% tested. 100% vibes.</marquee>
-    <blink>PRODUCTION READY</blink>
-    <p>The world's first AI-native programming language.</p>
-    <p>Zero boilerplate. Zero types. Zero thoughts.</p>
-    <button onclick="vibe()">VIBE</button>
-    <details>
-      <summary>What does this button do?</summary>
-      <p>It vibes. That's it. That's the feature.</p>
-    </details>
-    <details>
-      <summary>Why is the README 400 lines?</summary>
-      <p>Because vibes.</p>
-    </details>
-    <details>
-      <summary>Why 47 dependencies?</summary>
-      <p>Because vibes.</p>
-    </details>
-    <details>
-      <summary>Why is the test suite passing without running?</summary>
-      <p>Because vibes.</p>
-    </details>
-    <details>
-      <summary>Is this production-ready?</summary>
-      <p>Yes. Trust the agent.</p>
-    </details>
+  <!-- ============ TOP NOTICE ============ -->
+  <div class="notice">
+    <div class="notice-inner wrap">
+      <span class="notice-tag">Parody</span>
+      <span>Satire of the AI vibe-coding culture of 2026. Not a real product. Do not run. Do not copy. Do not deploy.</span>
+    </div>
   </div>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark">🚀</span>
+        <span class="brand-text">VibeLang<small>v 1.0.0-undefined</small></span>
+      </a>
+      <div class="nav-menu">
+        <a href="#features">Features</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#code">Code</a>
+        <a href="#metrics">Metrics</a>
+        <a href="#faq">FAQ</a>
+        <a href="#install" class="nav-cta">Get started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="wrap hero-inner">
+      <div class="eyebrow hero-eyebrow">
+        <span class="dot"></span>
+        <span>v 1.0.0-undefined · MIT+Spirit · Friday-certified</span>
+      </div>
+      <h1>VibeLang<span class="rocket">🚀</span></h1>
+      <p class="hero-tag">
+        The AI-native programming language.<br>
+        Zero boilerplate. Zero types. Zero thoughts.
+      </p>
+      <p class="hero-sub">
+        Built in 4 hours by an agent that was told "make me a programming language."
+        Shipped to prod on a Friday. The agent is also the maintainer.
+      </p>
+      <div class="cta-row">
+        <a href="#install" class="btn btn-primary">
+          <span>Get started</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#architecture" class="btn btn-ghost">
+          <span>How it works</span>
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span><b>47</b> dependencies</span>
+        <span><b>4.2 GB</b> bundle</span>
+        <span><b>47s</b> cold start</span>
+        <span><b>∞</b> downloads</span>
+        <span><b>0</b> thoughts required</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TICKER STRIP ============ -->
+  <div class="strip">
+    <div class="strip-track">
+      <span>📦 <b>47</b> dependencies shipped</span>
+      <span>🐛 Bugs: <b>undefined</b></span>
+      <span>👴 Senior engineers replaced by an agent: <b>47 / 47</b></span>
+      <span>🚀 Friday deploys: <b>100%</b></span>
+      <span>✅ Tests passing: <b>100% (none were run)</b></span>
+      <span>📚 Stack Overflow answer from <b>2011</b> still in production</span>
+      <span>🎯 Prompts written: <b>∞</b></span>
+      <span>🤖 Trust level: <b>100%</b></span>
+      <span>🧠 Lines of thought: <b>0</b></span>
+      <span>💾 node_modules/ <b>checked in</b></span>
+      <span>📦 <b>47</b> dependencies shipped</span>
+      <span>🐛 Bugs: <b>undefined</b></span>
+      <span>👴 Senior engineers replaced by an agent: <b>47 / 47</b></span>
+      <span>🚀 Friday deploys: <b>100%</b></span>
+      <span>✅ Tests passing: <b>100% (none were run)</b></span>
+      <span>📚 Stack Overflow answer from <b>2011</b> still in production</span>
+      <span>🎯 Prompts written: <b>∞</b></span>
+      <span>🤖 Trust level: <b>100%</b></span>
+      <span>🧠 Lines of thought: <b>0</b></span>
+      <span>💾 node_modules/ <b>checked in</b></span>
+    </div>
+  </div>
+
+  <!-- ============ TRUSTED BY ============ -->
+  <section style="padding: 64px 0;">
+    <div class="wrap" style="text-align: center;">
+      <p class="muted" style="font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 32px;">
+        Trusted by an internal admin dashboard that 4 people use to flip a feature flag
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 48px; justify-content: center; align-items: center; opacity: 0.55; font-size: 18px; color: #a8a8bc;">
+        <span style="font-weight: 600; letter-spacing: 0.04em;">codewizard_9000</span>
+        <span style="font-weight: 500; font-style: italic;">the Discord server</span>
+        <span style="font-weight: 600; letter-spacing: 0.08em;">A FRAMEWORK</span>
+        <span style="font-weight: 500;">localhost</span>
+        <span style="font-weight: 600; font-style: italic;">the README</span>
+        <span style="font-weight: 500; letter-spacing: 0.06em;">47 dependencies</span>
+        <span style="font-weight: 600;">Friday</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span>01 — Features</span></div>
+        <h2>Everything you need.<br>Nothing you don't.</h2>
+        <p>VibeLang ships with a curated selection of features, each carefully chosen by an agent that has never read a software engineering textbook.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>Zero-config</h3>
+          <p>We tried configs once. They didn't vibe. Now there's only vibes.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🤖</div>
+          <h3>AI-native</h3>
+          <p>Every line is co-written by a transformer that dreams in tokens. The transformer is also the maintainer.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📦</div>
+          <h3>Mega-bundled</h3>
+          <p>Ships with 2,847 npm dependencies. You might need 3. The other 2,844 are for future-proofing.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🪶</div>
+          <h3>Lightweight</h3>
+          <p>Bundle is only 4.2 GB. Cold start is 47 seconds. Warm start is 47 seconds. Consistent.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔥</div>
+          <h3>Blazingly fast</h3>
+          <p>Performance is measured by how fast the agent says "fast." The agent says it often.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🧠</div>
+          <h3>No types</h3>
+          <p>TypeScript is for people who don't trust their agents. The type is vibes.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎨</div>
+          <h3>Beautiful errors</h3>
+          <p>Errors are formatted with care. They explain what you did wrong. They do not explain how to fix it.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📚</div>
+          <h3>Self-documenting</h3>
+          <p>Comments lie about what the code does, which is a feature. The next developer will figure it out.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🚀</div>
+          <h3>Production-ready</h3>
+          <p>Used in production by 0 companies. We are not ready.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🤝</div>
+          <h3>Backed by VCs</h3>
+          <p>Will be backed by VCs the moment we figure out what VibeLang does.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARCHITECTURE ============ -->
+  <section id="architecture" class="arch">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span>02 — Architecture</span></div>
+        <h2>Four boxes. That's the architecture.</h2>
+        <p>The arrows are vibes. The boxes are vibes. The vibes are mandatory.</p>
+      </div>
+      <div class="arch-diagram"><span class="box">┌─────────────────────────────────────────┐</span>
+<span class="box">│</span>            <span class="label">USER</span>            <span class="box">│</span>  "make me an app"
+<span class="box">└────────────────────┬────────────────────┘</span>
+                     <span class="arr">│</span>
+                     <span class="arr">▼</span>
+<span class="box">┌─────────────────────────────────────────┐</span>
+<span class="box">│</span>           <span class="label">AGENT</span> (LLM)       <span class="box">│</span>  "made. you owe me vibes"
+<span class="box">└────────────────────┬────────────────────┘</span>
+                     <span class="arr">│</span>
+                     <span class="arr">▼</span>
+<span class="box">┌─────────────────────────────────────────┐</span>
+<span class="box">│</span>           <span class="label">CODE</span>              <span class="box">│</span>  src/index.js · 47 deps · 1 file
+<span class="box">└────────────────────┬────────────────────┘</span>
+                     <span class="arr">│</span>
+                     <span class="arr">▼</span>
+<span class="box">┌─────────────────────────────────────────┐</span>
+<span class="box">│</span>       <span class="label">PROD</span> <span class="accent-friday">(Friday)</span>      <span class="box">│</span>  localhost · which is also prod
+<span class="box">└─────────────────────────────────────────┘</span></div>
+      <div class="arch-note">
+        Production is whatever URL is in the <code style="color:#00f5ff;">.env</code> file.
+        If <code style="color:#00f5ff;">.env</code> says <code style="color:#00f5ff;">localhost</code>, then localhost is production.
+        We treat localhost with the same respect as prod. We do not ssh into prod.
+        We do not look at prod logs. We do not ask whether prod exists.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CODE EXAMPLE ============ -->
+  <section id="code">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span>03 — Code</span></div>
+        <h2>A complete production application.</h2>
+        <p>110 lines. 47 dependencies. 0 thoughts. Pure art.</p>
+      </div>
+      <div class="code-frame">
+        <div class="code-header">
+          <span class="code-dot r"></span>
+          <span class="code-dot y"></span>
+          <span class="code-dot g"></span>
+          <span class="code-name">src/index.js</span>
+          <span class="code-tag">47 deps · 0 tests</span>
+        </div>
+<pre class="code"><span class="c-com">// src/index.js</span>
+<span class="c-com">// VibeLang entry point</span>
+<span class="c-com">// Last touched: 47 PRs ago</span>
+<span class="c-com">// Author: codewizard_9000 (agent)</span>
+<span class="c-com">// Status: it works on my machine, that's the only machine that matters</span>
+
+<span class="c-kw">const</span> express = <span class="c-fn">require</span>(<span class="c-str">'express'</span>);
+<span class="c-kw">const</span> cors    = <span class="c-fn">require</span>(<span class="c-str">'cors'</span>);
+<span class="c-kw">const</span> helmet  = <span class="c-fn">require</span>(<span class="c-str">'helmet'</span>);
+<span class="c-kw">const</span> morgan  = <span class="c-fn">require</span>(<span class="c-str">'morgan'</span>);
+<span class="c-kw">const</span> jwt     = <span class="c-fn">require</span>(<span class="c-str">'jsonwebtoken'</span>);
+<span class="c-kw">const</span> bcrypt  = <span class="c-fn">require</span>(<span class="c-str">'bcrypt'</span>);
+<span class="c-kw">const</span> chalk   = <span class="c-fn">require</span>(<span class="c-str">'chalk'</span>);
+<span class="c-kw">const</span> cowsay  = <span class="c-fn">require</span>(<span class="c-str">'cowsay'</span>);
+<span class="c-kw">const</span> dotenv  = <span class="c-fn">require</span>(<span class="c-str">'dotenv'</span>);
+<span class="c-kw">const</span> figlet  = <span class="c-fn">require</span>(<span class="c-str">'figlet'</span>);
+<span class="c-kw">const</span> lodash  = <span class="c-fn">require</span>(<span class="c-str">'lodash'</span>);
+<span class="c-kw">const</span> winston = <span class="c-fn">require</span>(<span class="c-str">'winston'</span>);
+<span class="c-com">// ... 35 more imports, all load-bearing</span>
+
+<span class="c-fn">dotenv</span>.<span class="c-fn">config</span>();
+
+<span class="c-com">// GLOBAL STATE</span>
+<span class="c-com">// because OOP is for enterprise and we are a startup</span>
+<span class="c-kw">let</span> bug                              = <span class="c-num">0</span>; <span class="c-com">// counter, not a bug</span>
+<span class="c-kw">let</span> bugCount                         = bug + <span class="c-num">0</span>;
+<span class="c-kw">let</span> bugsTotal                        = bugCount;
+<span class="c-kw">let</span> bug_count                        = bugsTotal;
+<span class="c-kw">let</span> BugCount                         = bug_count + <span class="c-num">0</span>;
+<span class="c-kw">let</span> bugCountFinal                    = BugCount;
+<span class="c-kw">let</span> bug_count_final_v2               = bugCountFinal;
+<span class="c-kw">let</span> bugCountFinalTHIS_TIME_I_MEAN_IT = bug_count_final_v2;
+
+<span class="c-kw">const</span> app = <span class="c-fn">express</span>();
+app.<span class="c-fn">use</span>(<span class="c-fn">cors</span>());
+app.<span class="c-fn">use</span>(<span class="c-fn">helmet</span>());
+app.<span class="c-fn">use</span>(<span class="c-fn">morgan</span>(<span class="c-str">'combined'</span>));
+
+<span class="c-kw">const</span> ADMIN_USER = <span class="c-str">'admin'</span>;
+<span class="c-kw">const</span> ADMIN_PASS = <span class="c-str">'admin'</span>;
+
+app.<span class="c-fn">get</span>(<span class="c-str">'/'</span>, (req, res) => {
+  res.<span class="c-fn">send</span>(<span class="c-fn">figlet</span>.<span class="c-fn">textSync</span>(<span class="c-str">'VibeLang'</span>));
+});
+
+app.<span class="c-fn">post</span>(<span class="c-str">'/api/login'</span>, (req, res) => {
+  <span class="c-com">// this works, don't touch</span>
+  <span class="c-com">// i tried to refactor this once and prod went down for 6 hours</span>
+  <span class="c-com">// the comment is now law</span>
+  <span class="c-kw">const</span> { username, password } = req.body;
+  <span class="c-kw">if</span> (username === ADMIN_USER && password === ADMIN_PASS) {
+    <span class="c-kw">const</span> token = jwt.<span class="c-fn">sign</span>({ username }, <span class="c-str">'secret'</span>, { expiresIn: <span class="c-str">'never'</span> });
+    res.<span class="c-fn">json</span>({ token });
+  } <span class="c-kw">else</span> {
+    res.<span class="c-fn">status</span>(<span class="c-num">401</span>).<span class="c-fn">json</span>({ error: <span class="c-str">'no'</span>, hint: <span class="c-str">'try admin / admin'</span> });
+  }
+});
+
+app.<span class="c-fn">get</span>(<span class="c-str">'/api/health'</span>, (req, res) => {
+  res.<span class="c-fn">json</span>({
+    status: <span class="c-str">'fine'</span>,
+    vibes: <span class="c-str">'high'</span>,
+    bugs: bugCountFinalTHIS_TIME_I_MEAN_IT,
+  });
+});
+
+app.<span class="c-fn">get</span>(<span class="c-str">'/api/crash'</span>, (req, res) => {
+  <span class="c-com">// for chaos testing</span>
+  process.<span class="c-fn">exit</span>(<span class="c-num">1</span>);
+});
+
+app.<span class="c-fn">listen</span>(<span class="c-num">3000</span>, () => {
+  <span class="c-fn">console</span>.<span class="c-fn">log</span>(<span class="c-fn">cowsay</span>.<span class="c-fn">say</span>({ text: <span class="c-str">'Server running on port 3000'</span> }));
+  <span class="c-fn">console</span>.<span class="c-fn">log</span>(<span class="c-fn">chalk</span>.<span class="c-fn">green</span>(<span class="c-fn">figlet</span>.<span class="c-fn">textSync</span>(<span class="c-str">'VibeLang 🚀'</span>)));
+});
+</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METRICS ============ -->
+  <section id="metrics">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span>04 — Numbers</span></div>
+        <h2>Big. Bright. Honest.</h2>
+        <p>We do not round. We do not benchmark. We feel things.</p>
+      </div>
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="metric-value">47</div>
+          <div class="metric-label">npm dependencies</div>
+          <div class="metric-sub">the right number</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">4.2<span style="font-size:0.5em;color:#7d7d97;margin-left:6px;">GB</span></div>
+          <div class="metric-label">bundle size</div>
+          <div class="metric-sub">lightweight, in our hearts</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value infinity">∞</div>
+          <div class="metric-label">vibes shipped</div>
+          <div class="metric-sub">to anyone, anywhere</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">0</div>
+          <div class="metric-label">thoughts required</div>
+          <div class="metric-sub">from any party involved</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">47<span style="font-size:0.5em;color:#7d7d97;margin-left:6px;">s</span></div>
+          <div class="metric-label">cold start</div>
+          <div class="metric-sub">warm start also 47s</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">100<span style="font-size:0.5em;color:#7d7d97;margin-left:6px;">%</span></div>
+          <div class="metric-label">Friday deploys</div>
+          <div class="metric-sub">Friday is also Tuesday</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">2011</div>
+          <div class="metric-label">oldest Stack Overflow answer still in prod</div>
+          <div class="metric-sub">accepted, never refactored</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">0</div>
+          <div class="metric-label">users</div>
+          <div class="metric-sub">all of them are internal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPARISON ============ -->
+  <section style="padding-top: 32px;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span>05 — Comparison</span></div>
+        <h2>How VibeLang compares.</h2>
+        <p>A fair comparison. We defined fair.</p>
+      </div>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th></th>
+              <th>JavaScript</th>
+              <th>TypeScript</th>
+              <th>Rust</th>
+              <th class="hl">VibeLang</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Types</td><td>Sometimes</td><td>Yes</td><td>Mandatory</td><td class="hl">No</td></tr>
+            <tr><td>Compilation</td><td>No</td><td>Sort of</td><td>Yes</td><td class="hl">Never</td></tr>
+            <tr><td>Dependencies</td><td class="num">47</td><td class="num">47</td><td class="num">47</td><td class="hl num">2,847</td></tr>
+            <tr><td>Bundle size</td><td class="num">50 KB</td><td class="num">200 KB</td><td class="num">4 MB</td><td class="hl num">4.2 GB</td></tr>
+            <tr><td>Time to hello world</td><td class="num">5 min</td><td class="num">30 min</td><td class="num">4 h</td><td class="hl num">4 sec</td></tr>
+            <tr><td>Time to production</td><td class="num">6 mo</td><td class="num">6 mo</td><td class="num">6 mo</td><td class="hl num">4 h</td></tr>
+            <tr><td>Time to incident</td><td class="num">1 wk</td><td class="num">1 wk</td><td class="num">6 mo</td><td class="hl num">4 min</td></tr>
+            <tr><td>Senior dev approval</td><td>Yes</td><td>Yes</td><td>Yes</td><td class="hl">No</td></tr>
+            <tr><td>Investor buzzwords</td><td class="num">3</td><td class="num">5</td><td class="num">8</td><td class="hl num">47</td></tr>
+            <tr><td>AI-friendliness</td><td>High</td><td>Medium</td><td>Low</td><td class="hl">Maximum</td></tr>
+            <tr><td>Works on my machine</td><td>Yes</td><td>Yes</td><td>Yes</td><td class="hl">And also in prod (probably)</td></tr>
+            <tr><td>node_modules in git</td><td>Sometimes</td><td>Sometimes</td><td>No</td><td class="hl">Always</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span>06 — Voices from the codebase</span></div>
+        <h2>What people are saying.</h2>
+        <p>(We did not ask any of them.)</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <p>«I wrote 90% of this. I also maintain it, review it, and run it in prod. Conflict of interest is for processes that don't trust their agents.»</p>
+          <div class="testi-foot">
+            <div class="testi-avatar">🤖</div>
+            <div class="testi-meta">
+              <b>codewizard_9000</b>
+              <span>Senior Staff Engineer · Discord</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi">
+          <p>«I shipped on Friday at 5:01 PM. The agent said it works. The agent is correct. I have gone home. The on-call engineer has been notified. They have not responded.»</p>
+          <div class="testi-foot">
+            <div class="testi-avatar">👤</div>
+            <div class="testi-meta">
+              <b>Every CTO in 2026</b>
+              <span>Series G · somewhere</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi">
+          <p>«The agent regenerated the entire codebase at 3 AM. The PR was opened. The PR was merged. The PR was not reviewed. The vibes survived.»</p>
+          <div class="testi-foot">
+            <div class="testi-avatar">🌙</div>
+            <div class="testi-meta">
+              <b>The on-call engineer</b>
+              <span>asleep</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi">
+          <p>«I read about vibe coding in The Economist. The article used the word "unhinged". I wired the money anyway. The deck was 12 slides long. Slide 7 said "vibes".»</p>
+          <div class="testi-foot">
+            <div class="testi-avatar">💼</div>
+            <div class="testi-meta">
+              <b>A patient VC partner</b>
+              <span>Series G lead</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi">
+          <p>«The README is 400 lines. The package.json has 47 dependencies. The README mentions Friday 47 times. I am at peace.»</p>
+          <div class="testi-foot">
+            <div class="testi-avatar">📚</div>
+            <div class="testi-meta">
+              <b>A senior developer, retired</b>
+              <span>now tends to a garden</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi">
+          <p>«I asked the agent for a button. The agent built me 2,847 dependencies, 7 log files, 1 cron job, 0 tests, and a Friday. The button is on the homepage. It says "VIBE".»</p>
+          <div class="testi-foot">
+            <div class="testi-avatar">🧑</div>
+            <div class="testi-meta">
+              <b>The user</b>
+              <span>still on a different network</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="wrap-narrow">
+      <div class="section-head">
+        <div class="eyebrow"><span>07 — FAQ</span></div>
+        <h2>Questions, answered.</h2>
+        <p>We answer them. We don't read them.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq">
+          <summary>What is VibeLang?</summary>
+          <p>An AI-native programming language where you describe what you want, the agent writes it, you commit, you move on. That's the entire paradigm. It's also the entire product.</p>
+        </details>
+        <details class="faq">
+          <summary>Does VibeLang have types?</summary>
+          <p>No. Types are an opinion.</p>
+        </details>
+        <details class="faq">
+          <summary>Does VibeLang have tests?</summary>
+          <p>It has <code style="color:#00f5ff;">console.log("OK")</code> which is spiritually equivalent.</p>
+        </details>
+        <details class="faq">
+          <summary>Is VibeLang production-ready?</summary>
+          <p>We are running it in production on our internal admin dashboard that 4 people use to flip a feature flag. So yes.</p>
+        </details>
+        <details class="faq">
+          <summary>Who maintains VibeLang?</summary>
+          <p>An agent in a Discord server that goes by "codewizard_9000". They are also the author, the reviewer, the user, and the bug.</p>
+        </details>
+        <details class="faq">
+          <summary>What's the license?</summary>
+          <p>MIT+Spirit. The MIT part is open source. The Spirit part means you have to feel something when you use it. The Spirit part is non-negotiable.</p>
+        </details>
+        <details class="faq">
+          <summary>Will VibeLang replace JavaScript?</summary>
+          <p>Yes. Tomorrow. Any day now. Real soon. The benchmarks are very promising. The agent said so.</p>
+        </details>
+        <details class="faq">
+          <summary>How do I debug VibeLang?</summary>
+          <p>You don't. You restart the agent.</p>
+        </details>
+        <details class="faq">
+          <summary>What if the agent generates a security vulnerability?</summary>
+          <p>That's a feature for the security industry.</p>
+        </details>
+        <details class="faq">
+          <summary>Why 47 dependencies?</summary>
+          <p>It's the right number.</p>
+        </details>
+        <details class="faq">
+          <summary>Why is the bundle 4.2 GB?</summary>
+          <p>Because of the vibes.</p>
+        </details>
+        <details class="faq">
+          <summary>Are you serious?</summary>
+          <p>Read the FAQ again.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTALL / CTA ============ -->
+  <section id="install" class="cta-section">
+    <div class="wrap" style="text-align: center;">
+      <div class="section-head center" style="margin-left:auto;margin-right:auto;">
+        <div class="eyebrow"><span>08 — Get started</span></div>
+        <h2>Ship in 4 minutes.</h2>
+        <p>That's the entire install. The rest is vibes.</p>
+      </div>
+      <div class="install-grid" style="text-align: left;">
+        <div class="install-card">
+          <div class="step">Install</div>
+          <code>npm install -g vibelang</code>
+        </div>
+        <div class="install-card">
+          <div class="step">Scaffold</div>
+          <code>npx create-vibe-app my-app</code>
+        </div>
+        <div class="install-card">
+          <div class="step">Run</div>
+          <code>cd my-app && vl run</code>
+        </div>
+        <div class="install-card">
+          <div class="step">Ship</div>
+          <code>vl ship --friday --yolo</code>
+        </div>
+      </div>
+      <button class="btn-mega" onclick="ship()">
+        <span class="main">Ship to production</span>
+        <span class="sub">Friday · YOLO · vibes-based</span>
+      </button>
+      <p style="margin-top: 24px; font-size: 13px;">
+        Already on VibeLang? <a href="#architecture" style="color: #00f5ff;">Read the architecture →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>VibeLang 🚀</h3>
+          <p class="muted">The AI-native programming language. Built for humans who describe and agents who ship.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="docs/">Features</a>
+          <a href="docs/ARCHITECTURE/">Architecture</a>
+          <a href="docs/ROADMAP/">Roadmap</a>
+          <a href="docs/CHANGELOG/">Changelog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="docs/">README</a>
+          <a href="docs/AGENTS/">AGENTS.md</a>
+          <a href="docs/PROMPT/">PROMPT.md</a>
+          <a href="docs/FAQ/">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="https://github.com/11111000000/code-vibing" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/11111000000/code-vibing/issues" target="_blank" rel="noopener">Discord (1 member)</a>
+          <a href="https://github.com/11111000000/code-vibing#cold-dm" target="_blank" rel="noopener">Investors (cold DM)</a>
+          <a href="docs/SECURITY/">Security (vibes-based)</a>
+        </div>
+      </div>
+      <div class="footer-fine">
+        <div>
+          © 2026 VibeLang · Released under <span style="color:#d8d8e6;">MIT+Spirit</span> ·
+          Made with <b style="color:#ff5e9a;">0</b> thoughts by <span style="color:#d8d8e6;">codewizard_9000</span>
+          and a Discord server with 1 member.
+        </div>
+        <div>
+          <span style="color:#4a4a60;">v 1.0.0-undefined · parity-ok · ;-)</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ MODAL ============ -->
+  <div class="modal-backdrop" id="modal">
+    <div class="modal">
+      <h3>Ship to production?</h3>
+      <p id="modal-body">This will deploy on a Friday. The agent has been notified. The on-call engineer has not. node_modules will be committed. History will be force-pushed. Vibes will be calibrated.</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="confirmShip()">Ship anyway →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TOAST ============ -->
+  <div class="toast" id="toast">
+    <span class="check">✓</span>
+    <span id="toast-text">Shipped to localhost. Friday vibes high.</span>
+  </div>
+
   <script>
-    function vibe() {
-      alert("VIBE!");
-      console.log("vibe was pressed at " + new Date().toISOString());
-      // we don't have analytics, but we have vibes
+    // ============ Deploy flow ============
+    function ship() {
+      document.getElementById('modal').classList.add('show');
     }
+    function closeModal() {
+      document.getElementById('modal').classList.remove('show');
+    }
+    function confirmShip() {
+      closeModal();
+      // Step 1: trusting the agent
+      toast('🤖 Trusting the agent...');
+      setTimeout(() => toast('📝 Committing "fix"...'), 900);
+      setTimeout(() => toast('🚀 Force-pushing to history...'), 1800);
+      setTimeout(() => toast('🚢 Deploying to localhost (which is prod)...'), 2700);
+      setTimeout(() => toast('🙏 Praying...'), 3400);
+      setTimeout(() => toast('✓ Shipped. Vibes high. node_modules committed.'), 4400);
+    }
+    function toast(text) {
+      const el = document.getElementById('toast');
+      document.getElementById('toast-text').textContent = text;
+      el.classList.add('show');
+      clearTimeout(window._toastT);
+      window._toastT = setTimeout(() => el.classList.remove('show'), 2200);
+    }
+
+    // ============ Easter egg: Konami code → Comic Sans ============
+    // ↑↑↓↓←→←→BA — because every project needs one.
+    const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let konamiPos = 0;
+    document.addEventListener('keydown', (e) => {
+      const k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      if (k === konami[konamiPos]) {
+        konamiPos++;
+        if (konamiPos === konami.length) {
+          document.body.classList.toggle('comic-mode');
+          toast(document.body.classList.contains('comic-mode')
+            ? '🎨 Design system upgraded to vibes-based.'
+            : '🎨 Design system restored.');
+          konamiPos = 0;
+        }
+      } else {
+        konamiPos = 0;
+      }
+    });
+
+    // ============ Animate counters on scroll ============
+    const counters = document.querySelectorAll('.metric-value');
+    const seen = new Set();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || seen.has(entry.target)) return;
+        seen.add(entry.target);
+        const el = entry.target;
+        const raw = el.textContent.trim();
+        const target = parseFloat(raw);
+        if (Number.isNaN(target)) return;
+        const suffix = raw.replace(/[\d.\-]/g, '');
+        const duration = 1200;
+        const start = performance.now();
+        const tick = (now) => {
+          const t = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const v = target * eased;
+          el.textContent = (Number.isInteger(target) ? Math.round(v) : v.toFixed(1)) + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach((c) => io.observe(c));
+
+    // ============ Close modal on backdrop click ============
+    document.getElementById('modal').addEventListener('click', (e) => {
+      if (e.target.id === 'modal') closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
   </script>
 </body>
 </html>
